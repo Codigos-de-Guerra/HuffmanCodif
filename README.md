@@ -1,86 +1,69 @@
-# Binary Search Tree
+# HuffmanCodif. A project for Estrutura de Dados Básicas 2 (EDB II)
 
 ## Introduction
 
-As requested by our professor at the subject Basic Data Structure 2 ([EDB2](https://sigaa.ufrn.br/sigaa/public/departamento/componentes.jsf)), at Federal University of Rio Grande do Norte ([UFRN](https://ufrn.com.br)), we shall implement a binary search tree, which is described [here](https://en.wikipedia.org/wiki/Binary_search_tree). Not only that, we must also add some useful methods, besides the standards ones, which are:
-+ `nthElement()` - Returns the nth element of a tree (indexing by 1) from in-order visitation method.
-+ `position()` - Returns the element of a given position (relative to in-order method & indexed by 1).
-+ `median()` - Returns the element that has the median of the tree.
-+ `isFull()` - Returns a `boolean` value telling if the binary tree is a full tree.
-+ `isComplete()` - Returns a `boolean` value telling if the binary tree is a complete tree.
-+ `toString()` - Returns a string containing the visitation sequence by level.
+This programming project implements the BARES, Basic Arithmetic Expression Evaluator based on Stacks. Using the [EBNF](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form) grammar, the [recursive descendent parsing](https://en.wikipedia.org/wiki/Recursive_descent_parser) strategy for the expressionsn, and utilizing the [Tokenization method](https://en.wikipedia.org/wiki/Lexical_analysis#Tokenization) for separation.
 
-## Instructions
-By default, this program will recieve two files:
-+ Keys file
-A file that will generate the initial tree, all separated by spaces, i.e.:
-```
-12 30 50 10 11 5 30 90
-```
+## Algorithms
 
-+ Commands file
-A file containing commands, one on each line, some of them needs args, you can put them by a single space, i.e.:
-```
-CHEIA
-ENESIMO 10
-INSIRA 22
-IMPRIMA
-```
+Functions implemented for:
 
-### Supported commands
-In this version, we will support the following commands:
-+ `ENESIMO N` - Will return the nth element on the in-order representation of the binary search tree.
-+ `POSICAO N` - Will return the position that the element is on a in-order representation of the binary search tree.
-+ `MEDIANA`- Will return the median of an in-order representation of a binary search tree.
-+ `CHEIA` - Will tell if the tree is a full tree (All empty nodes are on the `last` level).
-+ `COMPLETA` - Will tell if the tree is a complete tree (All empty nodes are on the `last` or `last-1` levels).
-+ `IMPRIMA` - Will return the binary search tree represented by level.
-+ `REMOVA N` - Will remove key `N` from the binary search tree.
-+ `INSIRA N` - Will insert key `N` into the binary search tree.
+1. Converting an expression received into a sequence of tokens, using a `recursive descendent parsing` strategy.
+2. Converting an infix tokenized expression into its corresponding postfix representation, using a stack of Tokens.
+3. Evaluating an postfix expression using a stack, therefore returning it's mathematical accurate value.
 
+## How to compile
 
-## Compilation
+First of all, obviously this repository is needed to work as desired, so we must to download this repo. As we know that ```git``` is a tremendous tool for any programmer, then we must have git installed.
 
-1. In order to compile, some dependencies are required:
-+ `make`
-+ `gcc` || `clang` 
-2. Clone the repository onto your computer and run on terminal:
+It is also expected for user to have installed [doxygen](https://en.wikipedia.org/wiki/Doxygen) program. This will automatically generate documentation for code. Not a necessary package to compile and run program, but it is a tool to guide user through code functions. To install `doxygen` on UBUNTU, for example:
+
 ```bash
-make
+$ sudo apt-get install doxygen
 ```
-3. Run the program with:
+To compile we will use a makefile, so compilations may be more dynamic and automatic.
 ```bash
-./bintree [data-file] [command-file]
-# ex: ./bintree test/1.tree test/1.cmd
+# Using 'git clone' to clone this repo into desired directory:
+$ git clone https://github.com/ozielalves/Bares.git
+
+# Enter repo:
+$ cd Bares
+
+# To compile the whole project and also generate documentation, insert 'make' inside root of path:
+$ make
+
+# To clean up all remaining trash data and files, such as the binary ones, insert 'make clean':
+$ make clean
 ```
+
+## How to execute
+
+Now, we show how to run the program. 
+```bash
+# To execute program:
+$ ./bares <input_file> <output_file>
+```
+- `<input_file>`: Represents the file containing all the expressions wished to be tested.
+- `<output_file>`: File where the results obtained through parsing and calculations are written.
+
+### Example
+
+Let's say your information is stored in a file called $in.txt$, which is inside the directory $data$, and you want to store the results into a file named $out.txt$, also inside $data$ directory. The program should run like this:
+```bash
+$ ./bares data/in.txt data/out.txt
+```
+## GitHub Repository:
+
+*https://github.com/Codigos-de-Guerra/HuffmanCodif*
 
 ## Report
 
-### Approaches Followed
+Approach followed was ... using ...
+Complexities below ...
 
-To implement a usable Binary Search Tree, we adopted the ideia of a object Tree, which is a composition of numerous Nodes (another object implemented) and containing information of it's root and it's number of nodes. Now about the Nodes. Our object Node has information over it's key (same as content), the number os Nodes on his left and right, and pointer connecting it to it's left-below, right-below, and above Nodes.
-With such information, we were able to completly implement the standard and new methods. For example, thanks to knowing the amount of Nodes to the left and right of a given Node, we were able to implement`nthElement`, `position` and `median` methods, with complexity `O(h)`, where **h** is Tree's height.
-
-To assist onto implementation, we cretead several auxiliary private methods, so we could, for example, be able to determine Tree's height, or update informations on Nodes by every insertion or remotion, or even calculate distance over one Node to Tree's root Node. Inside most methods, this auxiliary ones were called to facilitate the general implementation and complexity.
-
-### Asymptotic Complexity Analysis
-
-We shall briefly explain all methods complexities, besides the standard binary search tree functions. Observe that this isn't a deep justification over complexity. Also consider **h** as **Tree's Height**. In a balanced binary tree, **`h == log(n)`**. 
-
-+ `nthElement()`: `O(h)`. We have inside each node two variables holding number of nodes in left and right sub-trees. Then, to discover the nth element we just compare if a given `node.l_subtrees` is bigger/smaller than and then we dig down into the correct direction, getting a height based asymptotic complexity (`O(h)`).
-
-+ `position()`: `O(h)`. Same principle as the nthElement (since it has an internal call inside for the comparissons).
-
-+ `median()`: `O(h)`. We call the `nthElement()` function on `tree.size+1/2`(if `tree.size` it's an odd number) or the smaller element between the `tree.size/2` and `tree.size+1/2`(if `tree.size` is an even number). If it derivates mostly from a `O(h)` function, then it is also a `O(h)`.
-
-+ `isFull()`: `O(n)`. It depends on `maxHeight()` function, wich digs down onto both left and right Nodes.
-
-+ `isComplete()`: `O(h*n)`. Same ideia of `toString()` was used, so that we could determine the number of Nodes on it's last level, but while checking each Node, a function to determine Node's distance to Tree root is executed, `distRoot()`,which has `O(h)` complexity. After that, it's complexity is determinated by `maxHeight()` function. Even though multiple `O(n)` methods are called, this procedure still classifies as `O(n)`.
-
-+ `toString()`: `O(n)`. It's impossible print all elements without going through all elements.
 
 ## Authorship
 
-Programs developed by [_Daniel Guerra_](https://github.com/Codigos-de-Guerra)  and [_Felipe Ramos_](https://github.com/FelipeCRamos), on 2018.2
+Program developed by [_Daniel Oliveira Guerra_](https://github.com/Codigos-de-Guerra) (*daniel.guerra13@hotmail.com*), 2018.2
 
-Licensed under **MIT License**
+&copy; IMD/UFRN 2018.
