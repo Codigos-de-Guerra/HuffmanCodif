@@ -54,8 +54,8 @@ release: dirs
 dirs:
 	@echo "Creating directories"
 	@mkdir -p $(dir $(OBJECTS))
-	@mkdir -p $(BIN_PATH))
-	@mkdir -p $(DATA_PATH))
+	@mkdir -p $(BIN_PATH)
+	@mkdir -p $(DATA_PATH)
 
 .PHONY: clean
 clean:
