@@ -31,9 +31,8 @@ class CodTree {
 		Nodes* m_root;
 
 	public:
+		/*Constructor{{{*/
 		CodTree(std::vector<Nodes> frequen) {
-			this->m_root = new Nodes;
-
 			std::priority_queue<
 				Nodes*,
 				std::vector<Nodes*>,
@@ -44,7 +43,6 @@ class CodTree {
 
 			// For debugging
 			printHeap(List_of_Trees);
-//			std::cout << List_of_Trees << std::endl;
 
 			// Constructing Codification Tree
 			// Implemented in a alternative way, rather than a list of Tree.
@@ -74,8 +72,8 @@ class CodTree {
 				// Sets as root.
 				m_root = top_one;
 			}
-		}
-
+		}/*}}}*/
+/*Desctructor{{{*/
 		~CodTree(void)
 		{
 			std::stack<Nodes*> del;			// All nodes need to be deleted
@@ -91,15 +89,8 @@ class CodTree {
 
 				delete current;
 			}
-		};
-/*
-		void walk(std::string str){
-			std::string st_ring;
-			auto res = private_walk(str, this->m_root, st_ring);
-			std::cout << "Path: " << res.first
-					  << "\nResults: " << res.second << "\n";
-		}
-*/
+
+		};/*}}}*/
 };
 
 #endif
