@@ -37,11 +37,13 @@ bool dataCompare( const Nodes *a, const Nodes *b )
 template< typename T>
 void printHeap(T queue)
 {
-	std::cout << "[ ";
+	std::cout << "[";
 	while( !queue.empty() )
 	{
-		std::cout << "(" << queue.top()->key << ", " << queue.top()->freq
-				  << "), ";
+		std::cout << "(" << queue.top()->key << ", " << queue.top()->freq;
+		if( queue.size() == 1 ) std::cout << ")";
+		else { std::cout << "), ";}
+		
 		queue.pop();
 	}
 	std::cout << "]\n";
@@ -73,8 +75,6 @@ std::vector<Nodes> count( std::string file )
 		temp.freq = e.second;
 		sorted_rep.push_back(temp);
 	}
-
-	//std::make_heap(sorted_rep.begin(), sorted_rep.end(), dataCompare);
 
 	return sorted_rep;
 }

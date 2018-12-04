@@ -2,6 +2,7 @@
 #define _HUFFMAN_H_
 
 #include "general.h"
+#include <stack>
 
 /*
 std::string to_bin(size_t x){
@@ -27,23 +28,23 @@ std::string to_bin(size_t x){
 
 class CodTree {
 	private:
-		Node* m_root;
+		Nodes* m_root;
 
 	public:
-		CodTree(std::vector<Nodes> frequen){
-			this->m_root = new Node;
+		CodTree(std::vector<Nodes> frequen) {
+			this->m_root = new Nodes;
 
 			std::priority_queue<
 				Nodes*,
 				std::vector<Nodes*>,
-				dataCompare
-				> List_of_Trees;
+				bool (*)(const Nodes*, const Nodes*)
+				> List_of_Trees(dataCompare);
 
 			for(auto &e : frequen) List_of_Trees.push(new Nodes(e.key, e.freq));
 
 			// For debugging
 			printHeap(List_of_Trees);
-
+//			std::cout << List_of_Trees << std::endl;
 
 			// Constructing Codification Tree
 			// Implemented in a alternative way, rather than a list of Tree.
@@ -73,13 +74,23 @@ class CodTree {
 				// Sets as root.
 				m_root = top_one;
 			}
-
 		}
 
 		~CodTree(void)
 		{
-			std::stack<Nodes*> del;
-			Nodes* current = this->m_root;
+			std::stack<Nodes*> del;			// All nodes need to be deleted
+			del.push(this->m_root);
+
+			while( !del.empty() )
+			{
+				Nodes* current = del.top();
+				del.pop();
+
+				if( current->left != nullptr ) del.push(current->left);
+				if( current->right != nullptr ) del.push(current->right);
+
+				delete current;
+			}
 		};
 /*
 		void walk(std::string str){
@@ -89,14 +100,6 @@ class CodTree {
 					  << "\nResults: " << res.second << "\n";
 		}
 */
-		void walk(std::string str){
-			size_t len = str.size();
-			private_walk(str, this->m_root, len);
-		}
-		bool add(size_t c){
-			std::string str = to_bin(c);
-			return insert(str, this->m_root, c);}
-
 };
 
 #endif
