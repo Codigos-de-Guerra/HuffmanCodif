@@ -31,66 +31,31 @@ class CodTree {
 		Nodes* m_root;
 
 	public:
-		/*Constructor{{{*/
-		CodTree(std::vector<Nodes> frequen) {
-			std::priority_queue<
-				Nodes*,
-				std::vector<Nodes*>,
-				bool (*)(const Nodes*, const Nodes*)
-				> List_of_Trees(dataCompare);
 
-			for(auto &e : frequen) List_of_Trees.push(new Nodes(e.key, e.freq));
+		/*
+		 * @brief Constructor
+		 */
+		CodTree(std::vector<Nodes> frequen);
 
-			// For debugging
-			printHeap(List_of_Trees);
+		/*
+		 * @brief Destructor
+		 */
+		~CodTree(void);
 
-			// Constructing Codification Tree
-			// Implemented in a alternative way, rather than a list of Tree.
-			// That's why my heap gets this name :)
+		/*
+		 * @brief Searchs for given char. Saves path.
+		 * @param _c, root, path. Char to search, current Node, string gets path
+		 * @returns True if is found. False otherwise
+		 */
+		bool search(char _c, Nodes* root, std::string& path);
 
-			while( List_of_Trees.size() >= 2 )
-			{
-				Nodes* r_one = List_of_Trees.top();	//!< Right node.
-				List_of_Trees.pop();
+		/*
+		 * @brief Shortens bin corresponding to given char.
+		 * @param _c. Char to be codified.
+		 * @returns String type containing path encoded
+		 */
+		std::string codify(char _c);
 
-				Nodes* l_one = List_of_Trees.top();	//!< Left node.
-				List_of_Trees.pop();
-
-				// Both with lowest frequency will be removedi(the 2 on top).
-
-				// This node is to be re-inserted as sum of the removed ones.
-				Nodes* top_one = new Nodes;
-				top_one->right = r_one;
-				top_one->left = l_one;
-
-				// It's frequency will be their sum.
-				top_one->freq = r_one->freq + l_one->freq;
-
-				// This node will be placed aboved the other two.
-				List_of_Trees.push(top_one);
-
-				// Sets as root.
-				m_root = top_one;
-			}
-		}/*}}}*/
-/*Desctructor{{{*/
-		~CodTree(void)
-		{
-			std::stack<Nodes*> del;			// All nodes need to be deleted
-			del.push(this->m_root);
-
-			while( !del.empty() )
-			{
-				Nodes* current = del.top();
-				del.pop();
-
-				if( current->left != nullptr ) del.push(current->left);
-				if( current->right != nullptr ) del.push(current->right);
-
-				delete current;
-			}
-
-		};/*}}}*/
 };
 
 #endif
