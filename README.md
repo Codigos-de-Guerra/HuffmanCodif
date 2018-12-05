@@ -2,21 +2,25 @@
 
 ## Introduction
 
-This programming project implements the BARES, Basic Arithmetic Expression Evaluator based on Stacks. Using the [EBNF](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form) grammar, the [recursive descendent parsing](https://en.wikipedia.org/wiki/Recursive_descent_parser) strategy for the expressionsn, and utilizing the [Tokenization method](https://en.wikipedia.org/wiki/Lexical_analysis#Tokenization) for separation.
+Programming project implementing a form of file compressing called *Huffman Compress*.
+
+## TODO
+
+- [ ] Detailed README
+- [ ] Report
+- [ ] Decompactor
+- [x] Todo o fucking resto hehe
 
 ## Algorithms
 
 Functions implemented for:
-
-1. Converting an expression received into a sequence of tokens, using a `recursive descendent parsing` strategy.
-2. Converting an infix tokenized expression into its corresponding postfix representation, using a stack of Tokens.
-3. Evaluating an postfix expression using a stack, therefore returning it's mathematical accurate value.
-
 ## How to compile
 
 First of all, obviously this repository is needed to work as desired, so we must to download this repo. As we know that ```git``` is a tremendous tool for any programmer, then we must have git installed.
 
-It is also expected for user to have installed [doxygen](https://en.wikipedia.org/wiki/Doxygen) program. This will automatically generate documentation for code. Not a necessary package to compile and run program, but it is a tool to guide user through code functions. To install `doxygen` on UBUNTU, for example:
+It is also expected for user to have installed [doxygen](https://en.wikipedia.org/wiki/Doxygen) program. This will automatically generate documentation for code.
+Not a necessary package to compile and run program, but it is a tool to guide user through code functions. Some errors will appear when compiling if not installed, but complete binary will still generate.
+To install `doxygen` on UBUNTU, for example:
 
 ```bash
 $ sudo apt-get install doxygen
@@ -24,12 +28,12 @@ $ sudo apt-get install doxygen
 To compile we will use a makefile, so compilations may be more dynamic and automatic.
 ```bash
 # Using 'git clone' to clone this repo into desired directory:
-$ git clone https://github.com/ozielalves/Bares.git
+$ git clone https://github.com/Codigos-de-Guerra/HuffmanCodif.git
 
 # Enter repo:
-$ cd Bares
+$ cd HuffmanCodif
 
-# To compile the whole project and also generate documentation, insert 'make' inside root of path:
+# To compile the whole project and also generate documentation, insert 'make' inside path's root:
 $ make
 
 # To clean up all remaining trash data and files, such as the binary ones, insert 'make clean':
@@ -41,16 +45,16 @@ $ make clean
 Now, we show how to run the program. 
 ```bash
 # To execute program:
-$ ./bares <input_file> <output_file>
+$ ./huff <input_file> <output_file>
 ```
-- `<input_file>`: Represents the file containing all the expressions wished to be tested.
-- `<output_file>`: File where the results obtained through parsing and calculations are written.
+- `<input_file>`: Refers to file containing text to be compressed.
+- `<output_file>`: Refers to compacted file containg results of compression.
 
 ### Example
 
 Let's say your information is stored in a file called $in.txt$, which is inside the directory $data$, and you want to store the results into a file named $out.txt$, also inside $data$ directory. The program should run like this:
 ```bash
-$ ./bares data/in.txt data/out.txt
+$ ./huff data/in.txt data/out.txt
 ```
 ## GitHub Repository:
 
