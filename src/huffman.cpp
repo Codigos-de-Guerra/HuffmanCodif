@@ -1,13 +1,6 @@
 #include <algorithm>
 #include "huffman.h"
 
-/*
-bool dataCompare( const Nodes *a, const Nodes *b )
-{
-	if( a->freq != b->freq ) return a->freq > b->freq;
-	return a->key > b->key;
-}*//*}}}*/
-
 /*Constructor{{{*/
 CodTree::CodTree(std::vector<Nodes> frequen)
 {
@@ -20,7 +13,7 @@ CodTree::CodTree(std::vector<Nodes> frequen)
 	for(auto &e : frequen) List_of_Trees.push(new Nodes(e.key, e.freq));
 
 	// For debugging
-	printHeap(List_of_Trees);
+//	printHeap(List_of_Trees);
 
 	// Constructing Codification Tree
 	// Implemented in a alternative way, rather than a list of Tree.
@@ -126,25 +119,4 @@ size_t from_bin(std::string str){
 
 	return result;
 }
-
-std::pair<std::string, size_t> DigiTree::private_walk(std::string str, Node* root, std::string& a){
-	
-	if(root->children[0] != nullptr ){
-		std::cout << "WEWW\n";
-		str.erase(0,1);
-		a.push_back('0');
-		this->private_walk(str, root->children[0], a);
-	}
-	else if(root->children[1] != nullptr ){
-		std::cout << "WW!111\n";
-		str.erase(0,1);
-		a.push_back('1');
-		this->private_walk(str, root->children[1], a);
-	}
-	if( root->children[0] == nullptr && root->children[1] == nullptr ){
-//	std::pair<std::string, size_t> foo;
-		return std::make_pair(a, root->data);
-	}
-}
 */
-

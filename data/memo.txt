@@ -1,6 +1,0 @@
-Just a little memo for later.
-
-Pdf sugests using vector to store ascii and it's repetitions. But it would mean to much memory.
-So I could use a vector of pairs or just using map(dictionary).
-
-Need checking digital tree.
