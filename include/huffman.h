@@ -30,6 +30,7 @@ class CodTree {
 	private:
 		Nodes* m_root;
 
+		void i_pre_ord(Nodes*, std::string&);
 	public:
 
 		/*
@@ -56,6 +57,12 @@ class CodTree {
 		 */
 		std::string codify(char _c);
 
+		std::string pre_ord(void)
+		{
+			std::string header;
+			i_pre_ord(this->m_root, header);
+			return header;
+		}
 };
 
 #endif

@@ -99,24 +99,20 @@ std::string CodTree::codify(char _c)
 
 	return true_path;
 }/*}}}*/
-
-/*
-size_t from_bin(std::string str){
-	size_t len = str.size();
-	size_t result = 0;
-
-	int i = 0;
-	std::cout << "Size: " << len << std::endl;
-	while( len > 0 ){
-		result += (str.at(i)-48) * pow(2,len-1);
-		i++;
-		len--;
-		std::cout << "re " << result << " ";
+/*Pre-order tree path{{{*/
+void CodTree::i_pre_ord( Nodes* root, std::string& buf)
+{
+	// Go back on recursion if is nullptr
+	if( root == nullptr ) return;
+	if( root->key != '\0' )		//Inserindo nó folha
+	{
+		buf.push_back('1');
+		buf.push_back(root->key);
 	}
+	else buf.push_back('0');
 
-	std::cout << "Result: " << result << "\n";
-	if( to_bin(result).size() < str.size() ){
+	i_pre_ord(root->left, buf);
+	i_pre_ord(root->right, buf);
 
-	return result;
-}
-*/
+	return;
+}/*}}}*/
