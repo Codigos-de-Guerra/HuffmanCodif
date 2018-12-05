@@ -38,7 +38,12 @@ class CodTree {
 	public:
 
 		/*
-		 * @brief Constructor
+		 * @brief Default Constructor. Used on Decompactor.
+		 */
+		CodTree(std::string);
+
+		/*
+		 * @brief Constructor from vector
 		 */
 		CodTree(std::vector<Nodes> frequen);
 

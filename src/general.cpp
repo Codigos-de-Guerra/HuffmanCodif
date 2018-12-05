@@ -1,5 +1,7 @@
 #include "general.h"
 
+#define END_MARKER 3
+
 /* Count method{{{*/
 std::vector<Nodes> count( std::string filename, std::string &content )
 {
@@ -65,7 +67,7 @@ void compactor(std::string output, std::string header, std::string body)
 	// Header inserted.
 	ofs << header;
 	ofs << "\n";	// Separate header from body.
-	ofs << body <</*Indicating end of sequence*/ (char)3;
+	ofs << body <</*Indicating end of sequence*/ (char) END_MARKER;
 
 	ofs.close();
 }
@@ -73,7 +75,19 @@ void compactor(std::string output, std::string header, std::string body)
 /*Decompactor{{{*/
 void decompactor(std::string file_to_descompact)
 {
+	std::string compacted;
 	std::ifstream ifs;
 	ifs.open(file_to_descompact.c_str());
+
+	char c;
+	while(ifs.good())
+	{
+		c = ifs.get();
+		if( c == EOF or c == '\n' ) break;
+		compacted.push_back(c);
+	}
+
+//	CodTree avure(compacted);
+	ifs.close();
 }
 /*}}}*/

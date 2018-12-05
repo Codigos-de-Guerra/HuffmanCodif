@@ -1,7 +1,14 @@
 #include <algorithm>
 #include "huffman.h"
 
-/*Constructor{{{*/
+/*Default Constructor{{{*/
+CodTree::CodTree( std::string header )
+{
+// TODO
+// std::priority_queue ??
+}
+/*}}}*/
+/* Vector Constructor{{{*/
 CodTree::CodTree(std::vector<Nodes> frequen)
 {
 	std::priority_queue<
