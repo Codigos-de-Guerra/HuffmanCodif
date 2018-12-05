@@ -7,6 +7,7 @@
 #include <string>
 #include <fstream>
 #include <queue>
+#include <algorithm>
 
 typedef unsigned short int bit;
 typedef struct CodiffTreeNodes {
@@ -41,7 +42,9 @@ void printHeap(T queue)
 	std::cout << "]\n";
 }/*}}}*/
 
-bool dataCompare( const Nodes* a, const Nodes* b );
-std::vector<Nodes> count( std::string file );
+bool dataCompare(const Nodes*, const Nodes*);
+std::vector<Nodes> count(std::string, std::string&);
+std::string to_bin(size_t);
+void write(std::string, std::string);
 
 #endif
