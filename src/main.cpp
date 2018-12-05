@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 */
 	CodTree avure(heap);
 
-	// Bits counter before. For visualization purposes
+	// Stores bit representation before compression.
 	std::string buff_bf;
 
 	printf("\nBefore compression:\n");
@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 		buff_bf += temp;
 		std::cout << temp << " ";
 	}
-	printf("\nNumber of bits used: %d\n", buff_bf.size());
+	std::cout << "\nNumber of bits used: " << buff_bf.size() << "\n";
 
 	std::string *codTable = new std::string[256];
 
@@ -51,10 +51,8 @@ int main(int argc, char **argv)
 		codTable[e.key] = bin;
 	}
 
-	// Bits counter after. Also visualization purposes.
-	// Show new representations.
+	// Stores bit representation after compression.
 	std::string buff_af;
-
 
 	printf("\nAfter compression:\n");
 	for( auto &c : file_content )
@@ -62,9 +60,11 @@ int main(int argc, char **argv)
 		buff_af += codTable[(int)c];
 		std::cout << codTable[(int)c] << " ";
 	}
-	printf("\nNumber of bits used: %d\n", buff_af.size());
+	std::cout << "\nNumber of bits used: " << buff_af.size() << "\n";
 
-	write(outputFile, buff_af);
 	// Now we create our compacted file.
+	std::string header = avure.pre_ord();
+	compactor(outputFile, header, buff_af);
+
 	return 0;
 }
