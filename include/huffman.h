@@ -30,6 +30,10 @@ class CodTree {
 	private:
 		Nodes* m_root;
 
+		/*
+		 * @brief Internal auxiliar function of 'pre-order'.
+		 * @param Receives tree's root, and a savable string.
+		 */
 		void i_pre_ord(Nodes*, std::string&);
 	public:
 
@@ -57,6 +61,9 @@ class CodTree {
 		 */
 		std::string codify(char _c);
 
+		/*
+		 * @brief Saves a pre-order sequence over tree nodes.
+		 */
 		std::string pre_ord(void)
 		{
 			std::string header;

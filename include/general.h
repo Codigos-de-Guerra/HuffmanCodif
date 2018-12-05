@@ -45,6 +45,7 @@ void printHeap(T queue)
 bool dataCompare(const Nodes*, const Nodes*);
 std::vector<Nodes> count(std::string, std::string&);
 std::string to_bin(size_t);
-void write(std::string, std::string);
+void compactor(std::string, std::string, std::string);
+void decompactor(std::string);
 
 #endif

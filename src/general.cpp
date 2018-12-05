@@ -56,15 +56,24 @@ std::string to_bin(size_t ascii)
 
 	return result;
 }/*}}}*/
-/*Write file function{{{*/
-void write(std::string output, std::string repr)
+/* Compactor function{{{*/
+void compactor(std::string output, std::string header, std::string body)
 {
-	// Header containing CodTree. TODO
 	std::ofstream ofs;
 	ofs.open(output.c_str());
 
-	ofs << repr <</*Indicating end of sequence*/ '\0';
+	// Header inserted.
+	ofs << header;
+	ofs << "\n";	// Separate header from body.
+	ofs << body <</*Indicating end of sequence*/ (char)3;
 
 	ofs.close();
+}
+/*}}}*/
+/*Decompactor{{{*/
+void decompactor(std::string file_to_descompact)
+{
+	std::ifstream ifs;
+	ifs.open(file_to_descompact.c_str());
 }
 /*}}}*/
