@@ -2,7 +2,8 @@
 
 ## Introduction
 
-Programming project implementing a form of file compressing called *Huffman Compress*.
+Programming project implementing a form of file compressing called [*Huffman Coding*](https://en.wikipedia.org/wiki/Huffman_coding). Largely used for [lossless data compression](https://en.wikipedia.org/wiki/Lossless_compression).
+This code works by shrinking the most used data on certain file, so that these with more occurency, can have the lowest value, generating a well structured compression.
 
 ## TODO
 
@@ -11,9 +12,6 @@ Programming project implementing a form of file compressing called *Huffman Comp
 - [ ] Decompactor
 - [x] Todo o fucking resto hehe
 
-## Algorithms
-
-Functions implemented for:
 ## How to compile
 
 First of all, obviously this repository is needed to work as desired, so we must to download this repo. As we know that ```git``` is a tremendous tool for any programmer, then we must have git installed.
@@ -42,6 +40,7 @@ $ make clean
 
 ## How to execute
 
+For execution, the main binary object is need alongside two others arguments, with the last being optional. When no 2º argument is given, it will be saved as "build/compressed.txt"
 Now, we show how to run the program. 
 ```bash
 # To execute program:
