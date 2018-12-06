@@ -2,10 +2,30 @@
 #include "huffman.h"
 
 /*Default Constructor{{{*/
-CodTree::CodTree( std::string header )
+bool CodTree::reCreate( std::string header, Nodes* &root, size_t& cont, size_t& l )
 {
-// TODO
-// std::priority_queue ??
+	if( root != this->m_root and root == nullptr ) root = new Nodes;
+	if( header[cont] == '1')
+	{
+		cont++;
+		return true;
+	}
+	if(reCreate(header, root->left, ++cont, l))
+	{
+		if( header[cont+1] != '0' and l > 0 )	{
+			root->left->key =(char) header[cont];
+			l--;
+		}
+		if(reCreate(header, root->right, ++cont, l))
+		{
+			if( l > 0 )
+			{
+				root->right->key = (char)header[cont];
+				l--;
+			}
+		}
+		return true;
+	}
 }
 /*}}}*/
 /* Vector Constructor{{{*/

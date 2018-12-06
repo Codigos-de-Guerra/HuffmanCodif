@@ -4,28 +4,6 @@
 #include "general.h"
 #include <stack>
 
-/*
-std::string to_bin(size_t x){
-	std::string str;
-	while( x >= 1 ){
-		str.append(std::to_string(x%2));
-		x = x/2;
-	}
-
-	int j = str.size()-1;
-	for(int i=0; i < str.size()/2; i++){
-		auto temp = str.at(i);
-		str.at(i) = str.at(j);
-		str.at(j) = temp;
-		j--;
-	}
-					 
-//	std::cout << "Binário final: " << str << std::endl;
-	return str;
-	// Working!!
-}
-*/
-
 class CodTree {
 	private:
 		Nodes* m_root;
@@ -35,12 +13,30 @@ class CodTree {
 		 * @param Receives tree's root, and a savable string.
 		 */
 		void i_pre_ord(Nodes*, std::string&);
+
+		bool reCreate(std::string, Nodes*&, size_t&, size_t&);
 	public:
 
 		/*
 		 * @brief Default Constructor. Used on Decompactor.
 		 */
-		CodTree(std::string);
+		CodTree(std::string header)
+		{
+				//TODO
+			this->m_root = new Nodes;
+			size_t leafs = 0;
+			size_t cont = 0;
+			for( auto &c : header )
+			{
+				if( c != '1' and c != '0' )
+				{
+					leafs++;
+				}
+			}
+
+			// Recreates original CodTree
+			/* bool res = */reCreate(header, this->m_root, cont, leafs);
+		}
 
 		/*
 		 * @brief Constructor from vector
